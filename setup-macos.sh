@@ -69,7 +69,14 @@ case "$choice" in
             mv ~/.config/kitty/theme.conf ~/.config/kitty/theme.conf.bak
         fi
         ln -s $(pwd)/kitty/theme.conf ~/.config/kitty/theme.conf
-        
+
+        if [ -d ~/.config/kitty/tokyo.jpg ]
+        then
+            echo "tokyo.webp already exists."
+            rm ~/.config/kitty/tokyo.jpg
+        fi
+        ln -s $(pwd)/kitty/tokyo.jpg ~/.config/kitty/tokyo.jpg
+
         ;;
     no|NO|No ) 
         echo "Skipping kitty setup..."
