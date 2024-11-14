@@ -33,7 +33,6 @@ ln -s $(pwd)/.tmux.conf ~/.tmux.conf
 
 # check if reattach-to-user-namespace is installed
 brew install reattach-to-user-namespace
-brew tap homebrew/cask
 brew install --cask font-monaspace-nerd-font font-noto-sans-symbols-2
 brew install bash bc coreutils gawk gh glab gsed jq nowplaying-cli
 # For Ubuntu
@@ -49,7 +48,6 @@ case "$choice" in
         if [ ! -f /Library/Fonts/Hack-Regular.ttf ]
         then
             echo "Hack Nerd Font is not installed. Installing Hack Nerd Font..."
-            brew tap homebrew/cask
             brew install --cask font-hack-nerd-font
         fi
 
@@ -85,4 +83,25 @@ case "$choice" in
         echo "Invalid input. Skipping kitty setup..."
         ;;
 esac
+
+
+# ------------------------- Zsh -------------------------
+echo "Setting up zsh..."
+
+# check if zsh is installed
+if command -v zsh &> /dev/null
+then
+    if ! grep -q "source ~/.zshhooks/neosh-timer.zsh" ~/.zshrc
+    then
+        # make a symlink to our neosh-timer.zsh in the home directory in the folder ~/.zshhooks
+        if [ ! -d ~/.zshhooks ]
+        then
+            mkdir ~/.zshhooks
+        fi
+        ln -s $(pwd)/zsh/neo-timer.zsh ~/.zshhooks/neo-timer.zsh
+
+        # add the source command to our zshrc
+        echo "source ~/.zshhooks/neo-timer.zsh" >> ~/.zshrc
+    fi
+fi
 
