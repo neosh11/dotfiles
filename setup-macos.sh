@@ -1,3 +1,15 @@
+if [ -d ~/.config/kitty/sydney.jpg ]
+then
+    
+    echo "sydney already exists."
+    rm ~/.config/kitty/sydney.jpg
+else
+ls -l ~/.config/kitty | cat
+    echo "sydney does not exist."
+fi
+ln -s $(pwd)/kitty/sydney.jpg ~/.config/kitty/sydney.jpg
+exit
+
 # check if brew is installed
 if ! command -v brew &> /dev/null
 then
@@ -68,12 +80,12 @@ case "$choice" in
         fi
         ln -s $(pwd)/kitty/theme.conf ~/.config/kitty/theme.conf
 
-        if [ -d ~/.config/kitty/tokyo.jpg ]
+        if [ -d ~/.config/kitty/sydney.jpg ]
         then
-            echo "tokyo.webp already exists."
-            rm ~/.config/kitty/tokyo.jpg
+            echo "tokyo already exists."
+            rm ~/.config/kitty/sydney.jpg
         fi
-        ln -s $(pwd)/kitty/tokyo.jpg ~/.config/kitty/tokyo.jpg
+        ln -s $(pwd)/kitty/sydney.jpg ~/.config/kitty/sydney.jpg
 
         ;;
     no|NO|No ) 
